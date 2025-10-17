@@ -22,8 +22,8 @@ public class ReqRes extends TestBase {
     TestData testData = new TestData();
 
     String[] userId = {"1", "2", "3", "4", "5", "6"};
-    int randomIndex = ThreadLocalRandom.current().nextInt(userId.length); //получаем рандомный индекс
-    String randomUserId = userId[randomIndex]; //получаем значение по этому рандомному индексу
+    int randomIndex = ThreadLocalRandom.current().nextInt(userId.length); 
+    String randomUserId = userId[randomIndex];
 
     @Test
     @Tag("Positive")
