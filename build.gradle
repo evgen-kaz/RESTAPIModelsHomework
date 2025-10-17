@@ -25,8 +25,8 @@ repositories {
 dependencies {
     testImplementation(
             'io.rest-assured:rest-assured:5.5.6',
-            'io.rest-assured:json-schema-validator:5.5.6', //для конвертации находу из 1 формата в другой
-            'io.qameta.allure:allure-rest-assured:2.30.0', //подключаем allure для rest assured
+            'io.rest-assured:json-schema-validator:5.5.6', 
+            'io.qameta.allure:allure-rest-assured:2.30.0',
             'org.junit.jupiter:junit-jupiter:5.10.0',
             'org.slf4j:slf4j-simple:2.0.7',
             'com.github.javafaker:javafaker:1.0.2',
