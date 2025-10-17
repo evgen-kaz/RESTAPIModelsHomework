@@ -3,7 +3,7 @@ import lombok.Data;
 
 @Data
 public class GetUserResponseLombokModel {
-    UserDataResponseModel data; //главный ответ. И в нем есть поле data
+    UserDataResponseModel data;
     Object support;
     Object _meta;
 }
