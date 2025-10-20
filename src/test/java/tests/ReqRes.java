@@ -74,7 +74,7 @@ public class ReqRes extends TestBase {
     @DisplayName("Невозможно создание нового пользователя")
     void NotSuccessfulCreateNewUserTest() {
         CreateUserResponseLombokModel response = step("Попытка создания пользователя", () ->
-                given(requestCreateSpec)
+                given(requestSpec)
                         .body(testData.generateDataUserJson())
                         .when()
                         .post("/register")
