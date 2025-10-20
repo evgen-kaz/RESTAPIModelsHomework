@@ -2,6 +2,6 @@ package models;
 import lombok.Data;
 
 @Data
-public class CreateUserResponseLombokModel {
+public class CreateUserResponseModel {
     String error;
 }
