@@ -1,7 +1,14 @@
 package models;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 public class UpdateUserResponseModel {
-    String last_name, first_name, email, updatedAt;
+    @JsonProperty("last_name")
+    String lastName;
+
+    @JsonProperty("first_name")
+    String firstName;
+
+    String email, updatedAt;
 }
