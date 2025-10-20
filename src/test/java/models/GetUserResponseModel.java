@@ -2,7 +2,7 @@ package models;
 import lombok.Data;
 
 @Data
-public class GetUserResponseLombokModel {
+public class GetUserResponseModel {
     UserDataResponseModel data;
     Object support;
     Object _meta;
