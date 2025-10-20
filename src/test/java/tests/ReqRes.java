@@ -1,8 +1,8 @@
 package tests;
 
-import models.CreateUserResponseLombokModel;
-import models.GetUserResponseLombokModel;
-import models.GetUsersResponseLombokModel;
+import models.CreateUserResponseModel;
+import models.GetUserResponseModel;
+import models.GetUsersResponseModel;
 import models.UpdateUserResponseModel;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -22,25 +22,25 @@ public class ReqRes extends TestBase {
     TestData testData = new TestData();
 
     String[] userId = {"1", "2", "3", "4", "5", "6"};
-    int randomIndex = ThreadLocalRandom.current().nextInt(userId.length); 
+    int randomIndex = ThreadLocalRandom.current().nextInt(userId.length);
     String randomUserId = userId[randomIndex];
 
     @Test
     @Tag("Positive")
     @DisplayName("Получение списка пользователей")
     void successfulGetListUsersTest() {
-        GetUsersResponseLombokModel response = step("Получение списка пользователей", () ->
+        GetUsersResponseModel response = step("Получение списка пользователей", () ->
                 given(requestSpec)
                         .when()
                         .get("/users")
                         .then()
                         .spec(responseSpec(200))
-                        .extract().as(GetUsersResponseLombokModel.class));
+                        .extract().as(GetUsersResponseModel.class));
         step("Проверка данных ответа для списка пользователей", () -> {
             assertEquals("1", response.getPage());
-            assertEquals("6", response.getPer_page());
+            assertEquals("6", response.getPerPage());
             assertEquals("12", response.getTotal());
-            assertEquals("2", response.getTotal_pages());
+            assertEquals("2", response.getTotalPages());
             assertNotNull(response.getData());
             assertNotNull(response.getSupport());
             assertNotNull(response.get_meta());
@@ -51,18 +51,18 @@ public class ReqRes extends TestBase {
     @Tag("Positive")
     @DisplayName("Получение пользователя по id")
     void successfulGetUserIdTest() {
-        GetUserResponseLombokModel response = step("Получение пользователя по ID", () ->
+        GetUserResponseModel response = step("Получение пользователя по ID", () ->
                 given(requestSpec)
                         .when()
                         .get("/users/1")
                         .then()
                         .spec(responseSpec(200))
-                        .extract().as(GetUserResponseLombokModel.class));
+                        .extract().as(GetUserResponseModel.class));
         step("Проверка данных ответа для одного пользователя", () -> {
             assertEquals(1, response.getData().getId());
             assertEquals("george.bluth@reqres.in", response.getData().getEmail());
-            assertEquals("George", response.getData().getFirst_name());
-            assertEquals("Bluth", response.getData().getLast_name());
+            assertEquals("George", response.getData().getFirstName());
+            assertEquals("Bluth", response.getData().getLastName());
             assertNotNull(response.getData().getAvatar());
             assertNotNull(response.getSupport());
             assertNotNull(response.get_meta());
@@ -73,14 +73,14 @@ public class ReqRes extends TestBase {
     @Tag("Negative")
     @DisplayName("Невозможно создание нового пользователя")
     void NotSuccessfulCreateNewUserTest() {
-        CreateUserResponseLombokModel response = step("Попытка создания пользователя", () ->
+        CreateUserResponseModel response = step("Попытка создания пользователя", () ->
                 given(requestSpec)
                         .body(testData.generateDataUserJson())
                         .when()
                         .post("/register")
                         .then()
                         .spec(responseSpec(400))
-                        .extract().as(CreateUserResponseLombokModel.class));
+                        .extract().as(CreateUserResponseModel.class));
         step("Проверка невозможности создания пользователя", () -> {
             assertEquals("Note: Only defined users succeed registration", response.getError());
         });
@@ -104,8 +104,8 @@ public class ReqRes extends TestBase {
                         .spec(responseSpec(200))
                         .extract().as(UpdateUserResponseModel.class));
         step("Проверка обновления пользователя", () -> {
-            assertEquals((testData.lastName), response.getLast_name());
-            assertEquals((testData.firstName), response.getFirst_name());
+            assertEquals((testData.lastName), response.getLastName());
+            assertEquals((testData.firstName), response.getFirstName());
             assertEquals((testData.email), response.getEmail());
             assertNotNull(response.getUpdatedAt());
         });
@@ -129,8 +129,8 @@ public class ReqRes extends TestBase {
                         .spec(responseSpec(200))
                         .extract().as(UpdateUserResponseModel.class));
         step("Проверка обновления пользователя", () -> {
-            assertEquals((testData.lastName), response.getLast_name());
-            assertEquals((testData.firstName), response.getFirst_name());
+            assertEquals((testData.lastName), response.getLastName());
+                assertEquals((testData.firstName), response.getFirstName());
             assertEquals((testData.email), response.getEmail());
             assertNotNull(response.getUpdatedAt());
         });
