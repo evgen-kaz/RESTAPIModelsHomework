@@ -19,17 +19,7 @@ public class BaseSpecs extends TestBase {
             .log().uri()
             .log().body()
             .log().headers()
-            .contentType(JSON)
-            .basePath("/api");
-
-    public static RequestSpecification requestCreateSpec = with()
-            .filter(withCustomTemplates())
-            .header("x-api-key", API_KEY)
-            .log().uri()
-            .log().body()
-            .log().headers()
-            .contentType(JSON)
-            .basePath("/api");
+            .contentType(JSON);
 
     public static ResponseSpecification responseSpec(int expectedStatusCode) { 
         return new ResponseSpecBuilder()
